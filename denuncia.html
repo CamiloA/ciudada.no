@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="assets/css/materialize.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+  <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+  <script src="./firebase.js" charset="utf-8"></script>
+
+
+<script>
+
+// window.onload = function() {
+//   getLocation();
+// };
+$(document).ready(function(){
+ $('select').formSelect();
+});
+
+
+</script>
+</head>
+<body>
+
+
+
+  <nav class="nav-wrapper teal" >
+
+    <a href="#" class="brand-logo center">Ciudada.no</a>
+    <ul id="nav-mobile" class="left hide-on-med-and-down">
+            <li><a id='logout' href="">Cerrar Sesion</a></li>
+            <li><a href="#denuncias">Mis Denuncias</a></li>
+            <li id=currentUsr>user</li>
+
+          </ul>
+  </nav>
+ <div class="container">
+   <div class="row center-align">
+        <div class="s12 ">
+          <!-- <video id="video" width="640" height="480" autoplay></video>
+          <canvas id="canvas" width="640" height="480"></canvas> -->
+
+<!-- <button id="snap">Snap Photo</button> -->
+
+          <div class="row center-align ">
+          </br>
+
+
+    <a class="waves-effect waves-light btn-large" >  <i class="material-icons">camera</i></a>
+</div>
+
+
+<div class="divider"></div>
+<div class="section ">
+<input id="foto" type="file"> </input>
+      <select id="selected">
+        <option value="" disabled selected>Tipo de denuncia</option>
+        <option value="Vial">Vial</option>
+        <option value="Comunidad">Comunidad</option>
+        <option value="Ruido">Ruido</option>
+      </select>
+    </div>
+   <input #denuncias id='descripcion' type="text" name="descripcion" placeholder="Descripcion"></input>
+   <input id='locacion' type="text" placeholder="Locacion">
+   <input id='fecha' placeholder="Selecciona La Fecha"type="text" class="datepicker">
+
+
+    <!-- <input type="text" id="lt"></input> -->
+    <button onclick="enviar()" class="waves-effect waves-light btn btn-signup">Enviar</button>
+</div>
+
+
+<h1 id="misdenuncias">Mis Denuncias</h1>
+<table class="table" id="table1" >
+		<thead>
+			<tr>
+				<th>Descripcion</th>
+				<th>Fecha</th>
+        <th>Evidencia</th>
+        <th>Lugar</th>
+        <th>Tipo</th>
+
+
+
+
+			</tr>
+		</thead>
+		<tbody>
+		</body>
+	</table>
+
+
+
+<script>
+
+ // Or with jQuery
+
+ $(document).ready(function(){
+   $('.datepicker').datepicker();
+ });
+
+function enviar(){
+  col = {}
+  col.foto = document.getElementById('foto').value;
+  col.tipo = document.getElementById('selected').value;
+  col.descripcion = document.getElementById('descripcion').value;
+  col.locacion = document.getElementById('locacion').value;
+  col.fecha = document.getElementById('fecha').value;
+
+
+  firebase.database().ref("denuncia").push(col);
+
+}
+// let mdenuncias = document.getElementById('misdenuncias');
+//
+// let dbMd = firebase.database().ref('denuncia').child('');
+//
+// dbMd.on('value',function(datasnapshot){
+// mdenuncias.innerText= datasnapshot;
+//
+// })
+//
+// window.onload = function(){
+//       var starCountRef = firebase.database().ref('denuncia');
+//       starCountRef.on('value', function(snapshot) {
+//         datos = snapshot.val();
+//
+//         config.data.datasets[0].data[0] = datos.a;
+//         config.data.datasets[0].data[1] = datos.b;
+//         config.data.datasets[0].data[2] = datos.c;
+//         window.myPie.update();
+//
+//         for(k in denuncia){
+//           letra = k.toUpperCase();
+//           document.getElementById('txt'+letra).value = denunca[k];
+//         }
+//       });
+// document.getElementById('enviar').addEventListener('click',enviar);
+
+
+
+// var x = document.getElementById("descripcion");
+//
+// function getLocation() {
+//     if (navigator.geolocation) {
+//         navigator.geolocation.getCurrentPosition(showPosition);
+//     } else {
+//         x.innerHTML = "Geolocation is not supported by this browser.";
+//     }
+// }
+//
+// function showPosition(position) {
+//     x.innerHTML = "Latitude: " + position.coords.latitude +
+//     "<br>Longitude: " + position.coords.longitude;
+// }
+// var video = document.getElementById('video');
+//
+// // Get access to the camera!
+// if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+//     // Not adding `{ audio: true }` since we only want video now
+//     navigator.mediaDevices.getUserMedia({ video: true }).then(function(stream) {
+//         video.src = window.URL.createObjectURL(stream);
+//         video.play();
+//     });
+// }
+//
+// var canvas = document.getElementById('canvas');
+// var context = canvas.getContext('2d');
+// var video = document.getElementById('video');
+//
+// // Trigger photo take
+// document.getElementById("snap").addEventListener("click", function() {
+// 	context.drawImage(video, 0, 0, 640, 480);
+//
+// });
+
+</script>
+        </div>
+   </div>
+
+ </div>
+ <script >
+ firebase.auth().onAuthStateChanged(function(user) {
+   if (!user) {
+     // User is signed in.
+     window.location= 'index.html';
+     document.getElementById('currentUsr').innerHTML= user.email;
+
+
+   }
+ });
+
+ function logout(){
+
+   firebase.auth().signOut().then(function() {
+     // Sign-out successful.
+     alert ('has cerrado sesion');
+ window.location='index.html'
+   }).catch(function(error) {
+     // An error happened.
+   });
+ }
+ document.getElementById('logout').addEventListener('click',logout);
+
+
+ var table = document.querySelector('#table1 tbody');
+
+function refreshData()
+{
+	while(table.hasChildNodes()) {
+		table.removeChild(table.firstChild);
+	}
+	dbRefObject = firebase.database().ref().child('denuncia' );
+	dbRefObject.on('value', snap => {
+		data = snap.val();
+		for(var r in data) {
+			var row = table.insertRow(-1);
+			for(var c in data[r]) {
+				cell = row.insertCell(-1);
+				cell.innerHTML = data[r][c];
+			}
+		}
+	});
+}
+refreshData();
+
+
+
+ </script>
+</body>
+</html>

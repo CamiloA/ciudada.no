@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+ <link rel="stylesheet" href="assets/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat|Oleo+Script" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script src="https://www.gstatic.com/firebasejs/5.3.0/firebase.js"></script>
+<script src="./firebase.js"></script>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
+<meta charset="UTF-8"/>
+</head>
+<body>
+    <section id="main-container">
+        <div class="container">
+            <div class="row">
+                <div class="col s12 ">
+                    <div class="row">
+                      <h1 class="titulo center-align">Ciudada.no</h1>
+                        <div class="col m6 ">
+                          <div class="row">
+                              <div class="login-box">
+
+                        <div class="signup-form">
+
+                              <h2>Iniciar Sesion </h2>
+
+                              <div class="divider"></div>
+
+                              <div class="section">
+                                  <input id="correo_login" type="email" name="email" placeholder="Correo"></input>
+                                  <input id="pass_login"type="password" name="password" placeholder="Clave"></input>
+                                  <button id='login' class="waves-effect waves-light btn ">Entrar</button>
+                              </div>
+                              </div>
+
+                          </div>
+                      </div>
+                            <!-- <img class="login-bg"src="assets/img/loginbg.jpg" alt=""> -->
+                        </div>
+                        <div class="col s12 m6">
+                            <div class="row">
+                                <div class="signup-box">
+
+                            <div class="signup-form">
+                                <h2>Registrate y Aporta </h2>
+
+                                <div class="divider"></div>
+                                <div class="section">
+                                    <input id="correo" type="email" name="email" placeholder="Correo"></input>
+                                    <!-- <input id="nombre"type="text" name="name" placeholder="Nombre "></input> -->
+                                    <!-- <input id="usuario" type="text" name="username" placeholder="Usuario"></input> -->
+                                    <input id="pwd" type="password" name="password" placeholder="Clave"></input>
+                                    <button id="signup" class="waves-effect waves-light btn btn-signup">Registrate</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="site-footer">
+      <div class="container">
+        <div class="row">
+<button id='logout'>logout</button>
+          <div class="col s12 l3 center-align ">
+            © CamiloSanz
+          </div>
+        </div>
+      </div>
+    </footer>
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+<script src="./app.js">
+
+</script>
+
+</body>
+</html>
